@@ -1,7 +1,7 @@
 {
-  "name": "property_pro",
+  "name": "foodfair",
   "version": "1.0.0",
-  "description": "Property_pro application",
+  "description": "foodfair application",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
