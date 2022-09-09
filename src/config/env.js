@@ -25,10 +25,7 @@ if (error) {
 const config = {
   PORT: env.PORT,
   env: env.NODE_ENV,
-  DB_HOST: env.DB_HOST,
-  DB_NAME: env.DB_NAME,
-  DB_USER: env.DB_USER,
+  MONGODB_URL: env.MONGO_URL,
 };
-
 
 module.exports = config;

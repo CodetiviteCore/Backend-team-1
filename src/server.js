@@ -1,10 +1,10 @@
 const  cors  = require('cors');
 const express = require('express');
 const expressPino = require('express-pino-logger');
-
+const mongoose = require('mongoose');
 const logger = require('./logger');
 const routes = require('./routes');
-const { PORT } = require('./config/env');
+const { PORT,MONGODB_URL } = require('./config/env');
 
  class SetupServer {
   app = express();
@@ -14,8 +14,9 @@ const { PORT } = require('./config/env');
    * same as this.port = port, declaring as private here will
    * add the port variable to the SetupServer instance
    */
-  constructor(port = PORT) {
+  constructor(port = PORT, MONGODB = MONGODB_URL) {
     this.port = port;
+    this.mongoDB = MONGODB
   }
 
   /*
@@ -26,7 +27,7 @@ const { PORT } = require('./config/env');
     this.setupExpress();
     this.setupControllers();
     //must be the last
-
+    this.connectMongodB()
     this.setupErrorHandlers();
   }
 
@@ -47,7 +48,7 @@ const { PORT } = require('./config/env');
   setupControllers() {
     this.app.get('/', (req, res) =>
       res.status(200).send({
-        message: 'Welcome to Property Pro',
+        message: 'Welcome to Food fair',
       })
     );
     this.app.use('/v1.0/api', routes);
@@ -67,6 +68,16 @@ const { PORT } = require('./config/env');
     return this.app;
   }
 
+  async connectMongodB(){
+    mongoose.connect(this.mongoDB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+  
+    }).then(()=>console.log('connected to mongoDb. . .'))
+    .catch((err)=>console.log(err.message))
+  
+  }
+  
   async close() {
     if (this.server) {
       await new Promise((resolve, reject) => {
