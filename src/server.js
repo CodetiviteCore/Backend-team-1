@@ -47,7 +47,7 @@ const { PORT } = require('./config/env');
   setupControllers() {
     this.app.get('/', (req, res) =>
       res.status(200).send({
-        message: 'Welcome to Property Pro',
+        message: 'Welcome to food fair',
       })
     );
     this.app.use('/v1.0/api', routes);
