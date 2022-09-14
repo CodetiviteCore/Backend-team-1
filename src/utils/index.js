@@ -1,1 +1,2 @@
-module.exports = { };
+module.exports = {
+    ToolBox: require('./toolbox'), };
