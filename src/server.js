@@ -57,6 +57,7 @@ const { PORT,MONGODB_URL } = require('./config/env');
 
   setupErrorHandlers() {
     this.app.use((err, _, res, __) => {
+      
       if (err.name === 'HttpError') {
         return res.status(500).json({ success: false, error: err.name });
       }
