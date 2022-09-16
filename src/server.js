@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const logger = require('./logger');
 const routes = require('./routes');
 const { PORT,MONGODB_URL } = require('./config/env');
+const cookieSession = require("cookie-session");
 
  class SetupServer {
   app = express();
