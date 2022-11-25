@@ -5,8 +5,9 @@ const expressPino = require('express-pino-logger');
 const logger = require('./logger');
 const routes = require('./routes');
 const { PORT } = require('./config/env');
+    
 
- class SetupServer {
+ class SetupServer  {
   app = express();
   server;
 
